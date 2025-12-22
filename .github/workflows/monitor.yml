@@ -34,4 +34,5 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           ADMIN_CHAT_ID: ${{ secrets.ADMIN_CHAT_ID }}
+          SCRAPING_MODE: ${{ secrets.SCRAPING_MODE || 'hybrid' }}
         run: python main.py # التشغيل مباشرة لأن الملفات في الـ Root
