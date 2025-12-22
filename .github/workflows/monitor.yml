@@ -22,6 +22,7 @@ jobs:
             --pull always \
             -e SUPABASE_URL="${{ secrets.SUPABASE_URL }}" \
             -e TELEGRAM_TOKEN="${{ secrets.TELEGRAM_TOKEN }}" \
+            -e DEVELOPER_CHAT_ID="${{ secrets.DEVELOPER_CHAT_ID }}" \
             -e ADMIN_CHAT_ID="${{ secrets.ADMIN_CHAT_ID }}" \
             -e SCRAPING_MODE="${{ secrets.SCRAPING_MODE }}" \
             y0usf/janoubco-monitor:latest
