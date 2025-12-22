@@ -23,4 +23,4 @@ jobs:
             -e TELEGRAM_TOKEN="${{ secrets.TELEGRAM_TOKEN }}" \
             -e ADMIN_CHAT_ID="${{ secrets.ADMIN_CHAT_ID }}" \
             -e SCRAPING_MODE="${{ secrets.SCRAPING_MODE }}" \
-            y0usf/janoub-monitor:latest
+            y0usf/janoubco-monitor:latest
