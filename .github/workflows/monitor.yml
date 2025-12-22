@@ -19,6 +19,7 @@ jobs:
       - name: Run Monitor
         run: |
           docker run --rm \
+            --pull always \
             -e SUPABASE_URL="${{ secrets.SUPABASE_URL }}" \
             -e TELEGRAM_TOKEN="${{ secrets.TELEGRAM_TOKEN }}" \
             -e ADMIN_CHAT_ID="${{ secrets.ADMIN_CHAT_ID }}" \
