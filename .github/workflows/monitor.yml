@@ -2,18 +2,18 @@ name: Janoub Smart Monitor (Encrypted Docker Edition)
 
 on:
   schedule:
-    - cron: '0 * * * *'  # تشغيل كل ساعة لضمان سرعة رصد الأسعار
+    - cron: '0 */2 * * *'  # تشغيل كل ساعة لضمان سرعة رصد الأسعار
   workflow_dispatch:  # تشغيل يدوي للتجربة
 
 # ✅ منع تشغيل رنتين في نفس الوقت لحماية قاعدة البيانات
 concurrency:
   group: janoub-docker-group
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   run-monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 60 # وقت كافي لعملية الـ Deep Check لـ 1000 منتج
+    timeout-minutes: 100 # وقت كافي لعملية الـ Deep Check لـ 1000 منتج
 
     steps:
       - name: Login to Docker Hub
