@@ -1,13 +1,19 @@
-name: Janoub Price Monitor
+name: Janoub Smart Monitor (Encrypted Docker Edition)
 
 on:
   schedule:
-    - cron: '0 */2 * * *'  # كل ساعتين
-  workflow_dispatch:  # تشغيل يدوي
+    - cron: '0 * * * *'  # تشغيل كل ساعة لضمان سرعة رصد الأسعار
+  workflow_dispatch:  # تشغيل يدوي للتجربة
+
+# ✅ منع تشغيل رنتين في نفس الوقت لحماية قاعدة البيانات
+concurrency:
+  group: janoub-docker-group
+  cancel-in-progress: false
 
 jobs:
   run-monitor:
     runs-on: ubuntu-latest
+    timeout-minutes: 100 # وقت كافي لعملية الـ Deep Check لـ 1000 منتج
 
     steps:
       - name: Login to Docker Hub
@@ -16,13 +22,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Run Monitor
+      - name: Run Secure Monitor
         run: |
           docker run --rm \
             --pull always \
             -e SUPABASE_URL="${{ secrets.SUPABASE_URL }}" \
             -e TELEGRAM_TOKEN="${{ secrets.TELEGRAM_TOKEN }}" \
-            -e DEVELOPER_CHAT_ID="${{ secrets.DEVELOPER_CHAT_ID }}" \
             -e ADMIN_CHAT_ID="${{ secrets.ADMIN_CHAT_ID }}" \
-            -e SCRAPING_MODE="${{ secrets.SCRAPING_MODE }}" \
+            -e DEVELOPER_CHAT_ID="${{ secrets.DEVELOPER_CHAT_ID }}" \
+            -e SCRAPING_MODE="hybrid" \
+            -e MAX_PRODUCTS_TARGET="4000" \
             y0usf/janoubco-monitor:latest
