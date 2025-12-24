@@ -8,12 +8,12 @@ on:
 # ✅ منع تشغيل رنتين في نفس الوقت لحماية قاعدة البيانات
 concurrency:
   group: janoub-docker-group
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   run-monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 100 # وقت كافي لعملية الـ Deep Check لـ 1000 منتج
+    timeout-minutes: 60 # وقت كافي لعملية الـ Deep Check لـ 1000 منتج
 
     steps:
       - name: Login to Docker Hub
