@@ -2,7 +2,7 @@ name: Janoub Smart Monitor (Encrypted Docker Edition)
 
 on:
   schedule:
-    - cron: '0 */2 * * *'  # تشغيل كل ساعة لضمان سرعة رصد الأسعار
+    - cron: '0 */3 * * *'  # تشغيل كل ساعة لضمان سرعة رصد الأسعار
   workflow_dispatch:  # تشغيل يدوي للتجربة
 
 # ✅ منع تشغيل رنتين في نفس الوقت لحماية قاعدة البيانات
